@@ -1,0 +1,150 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.logbox {
+  background-color: #3b414e;
+  position: fixed;
+  margin: 0px;
+  word-wrap: break-word;
+  width: 100%;
+  height: 30%;
+  bottom: 0px;
+  font-size: 15px;
+  text-align: start;
+}
+.logbox p {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.post-board {
+  padding: 10px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 20px;
+  border-bottom: 1px solid black;
+  border-top: 2px solid green;
+}
+
+.head-title {
+  font-weight: bold;
+}
+
+.Content-textarea {
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+  border: solid 2px;
+  border-radius: 5px;
+  font-size: 16px;
+  resize: both;
+}
+
+.post-body {
+  border-top: 2px solid green;
+}
+
+.comment-body {
+  width: 100%;
+}
+
+.commentDiv {
+  margin-bottom: 0.3em;
+}
+
+.write-1 {
+  height: 50px;
+  border: none;
+  font-size: 40px;
+  background-color: #f5f6f7;
+  outline: none;
+}
+
+.write-2 {
+  margin-top: 30px;
+  font-size: 15px;
+  border: none;
+  background-color: #f5f6f7;
+  outline: none;
+  width: 985px;
+  height: 312px;
+}
+
+.comment-list {
+  list-style: none;
+
+  padding-bottom: 24px;
+}
+
+.comment-list-1 {
+  font-size: 150%;
+  padding-bottom: 10px;
+}
+
+.comment-div {
+  float: left;
+}
+
+.body {
+  padding-left: 20%;
+  padding-right: 20%;
+}
+
+.comment-body-1 {
+  border: 1px solid black;
+}
+
+.comment-body-2 {
+  border: 1px solid black;
+}
+
+.signup-profileImg-label {
+  margin: 5px 0 20px 0;
+  font-weight: bold;
+  font-size: 13px;
+  color: #0095f6;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.form-signup input[type="file"] {
+  display: none;
+}
