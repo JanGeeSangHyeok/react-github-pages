@@ -61,6 +61,7 @@ router.post("/api/new/comment", (req, res) => {
     if (req.body.refId > -1) {
       db.comments.insert(
         {
+          id: req.body.id,
           no: count,
           refId: req.body.refId,
           author: req.body.author,
@@ -195,16 +196,43 @@ router.post("/api/update/comment", (req, res) => {
 
 router.post("/api/update/post", (req, res) => {
   console.log("reqreqreq", req.body);
-  db.posts.update(
-    { id: req.body.id },
-    { $set: { check: false } },
-
-    function (err, updated) {
-      res.send({ msg: "업데이트 되었습니다." });
-
-      console.log("업데이트되었습니다.");
+  db.posts.remove({ id: req.body.id }, {}, function (err, Removed) {
+    console.log("업데이트되었습니다.");
+  });
+  db.comments.remove({ id: req.body.id }, { multi: true }, (err, Removed) => {
+    console.log("정말로");
+  });
+  db.posts.find({}, function (err, docs) {
+    for (let i = 0; i < docs.length; i++) {
+      if (docs[i].id > req.body.id) {
+        db.posts.update(
+          { id: docs[i].id },
+          { $set: { id: docs[i].id - 1 } },
+          (err, updated) => {
+            console.log("진짜로");
+          }
+        );
+      }
     }
-  );
+  });
+  db.comments.find({}, function (err, docs) {
+    for (let j = 0; j < docs.length; j++) {
+      if (docs[j].id > req.body.id) {
+        db.comments.update(
+          { id: docs[j].id },
+          {
+            $set: { id: docs[j].id - 1 },
+          },
+          { multi: true },
+
+          (err, updated) => {
+            console.log("성공");
+          }
+        );
+      }
+    }
+  });
+  res.send({ msg: "성공" });
 });
 
 router.post("/api/new/accounts", (req, res) => {

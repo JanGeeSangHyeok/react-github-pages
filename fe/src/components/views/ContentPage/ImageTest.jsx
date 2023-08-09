@@ -22,6 +22,7 @@ function ImageTest(props) {
 
   const applyRecomment = () => {
     postAction("/api/new/comment", {
+      id: props.id,
       refId: props.no,
       author: props.author,
       contents: reComment,
@@ -88,6 +89,7 @@ function ImageTest(props) {
                   no={x.no}
                   author={props.author}
                   stair={stair}
+                  id={x.id}
                 ></ImageTest>
               </div>
             );
@@ -168,6 +170,7 @@ function ImageTest(props) {
                   no={x.no}
                   author={props.author}
                   stair={stair}
+                  id={x.id}
                 ></ImageTest>
               </div>
             );

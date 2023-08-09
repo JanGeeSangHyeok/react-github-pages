@@ -111,6 +111,7 @@ function ContentPage() {
               return (
                 <div key={i}>
                   <ImageTest
+                    id={x.id}
                     no={x.no}
                     author={x.author}
                     editable={x.editable}
