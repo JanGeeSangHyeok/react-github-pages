@@ -17,6 +17,10 @@ function AccountPage() {
   const [image, setImage] = useState("");
   const imgRef = useRef();
 
+  const [nameMessage, setNameMessage] = useState("");
+  const [passwordMessage, setPasswordMessage] = useState("");
+  const [isName, setIsName] = useState(false);
+  const [isPassword, setIsPassword] = useState(false);
   function handleApi() {
     const formData = new FormData(); //image file을 서버로 보내기 위한 Form을 만들어 준다.
     formData.append("image", image); // formData안에 image와 dataId를 blob형태로 만들어 줘 request를 보낼 수 있도록 해준다.
@@ -142,8 +146,24 @@ function AccountPage() {
               value={dataAuthor}
               onChange={(event) => {
                 setDataAuthor(event.target.value);
+                if (
+                  event.target.value.length < 2 ||
+                  event.target.value.length > 5
+                ) {
+                  setNameMessage("2글자 이상 5글자 미만으로 입력하세요!");
+                  setIsName(false);
+                } else {
+                  setNameMessage("올바릅니당!");
+                  setIsName(true);
+                }
               }}
             />
+            <br></br>
+            {dataAuthor.length > 0 && (
+              <span className={`message ${isName ? "success" : "error"}`}>
+                {nameMessage}
+              </span>
+            )}
           </td>
         </tr>
         <tr>
@@ -191,9 +211,7 @@ function AccountPage() {
             <input
               type="password"
               value={dataPasswordCheck}
-              onChange={(event) => {
-                setDataPasswordCheck(event.target.value);
-              }}
+              onChange={(event) => {}}
             />
           </td>
         </tr>
@@ -208,9 +226,26 @@ function AccountPage() {
               type="password"
               value={dataPassword}
               onChange={(event) => {
+                const passwordRegex =
+                  /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,25}$/;
                 setDataPassword(event.target.value);
+                if (!passwordRegex.test(event.target.value)) {
+                  setPasswordMessage(
+                    "숫자+영문자+특수문자 조합으로 8자리 이상 입력해!"
+                  );
+                  setIsPassword(false);
+                } else {
+                  setPasswordMessage("올바릅니당!");
+                  setIsPassword(true);
+                }
               }}
             />
+            <br></br>
+            {dataPassword.length > 0 && (
+              <span className={`message ${isPassword ? "success" : "error"}`}>
+                {passwordMessage}
+              </span>
+            )}
           </td>
         </tr>
 
